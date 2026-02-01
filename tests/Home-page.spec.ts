@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-
+test.describe ('Тесты страницы Home',()=>{
 test('Проверка отображения элементов навигации в хедере', async ({ page }) => {
   await page.goto('https://automationexercise.com/');
   await expect(page.getByRole('link', { name: 'Website for automation practice' })).toBeVisible();
@@ -161,3 +161,5 @@ test('Проверка перехода на вкладку Products  и нал�
   await expect(img).toBeVisible();
   console.log('Картинка загружена и видна');
 });
+
+}
