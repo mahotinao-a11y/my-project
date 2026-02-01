@@ -160,3 +160,18 @@ test.describe('Тесты страницы Home', () => {
     console.log('Картинка загружена и видна');
   });
 });
+
+//Анотации (skip-пропуск теста,fixme-тест для фикса,fail-провальный тест, only -запускает только один тест,)
+/*test.skip('Проверка перехода на вкладку Products  и наличия картинки распродажи ', async ({
+    page,
+  }) => {
+    console.log('Логотип выведен');
+    const productsLink = page.getByRole('link', { name: 'Products' });
+    await expect(productsLink).toBeVisible();
+    await productsLink.click();
+    await expect(page).toHaveURL(/products/);
+    console.log('Переход "Products" осуществлен');
+    const img = page.locator('img[src="/static/images/shop/sale.jpg"]');
+    await expect(img).toBeVisible();
+    console.log('Картинка загружена и видна');
+  });*/
