@@ -1,4 +1,16 @@
 import { test, expect } from '@playwright/test';
+
+const elements = [
+  { locator: (page) => page.getByRole('link', { name: 'Website for automation practice' }) },
+  { locator: (page) => page.getByRole('link', { name: 'Home' }) },
+  { locator: (page) => page.getByRole('link', { name: 'Products' }) },
+  { locator: (page) => page.getByRole('link', { name: 'Cart' }) },
+  { locator: (page) => page.getByRole('link', { name: 'Signup / Login' }) },
+  { locator: (page) => page.getByRole('link', { name: 'Test Cases' }).first() },
+  { locator: (page) => page.getByRole('link', { name: 'API Testing' }) },
+  { locator: (page) => page.getByRole('link', { name: 'Contact us' }) },
+  { locator: (page) => page.getByRole('link', { name: 'Video Tutorials' }) },
+];
 //группировка тестов
 test.describe('Тесты страницы Home', () => {
   // запуск повторяющейся строчки кода для всех тестов в группе
@@ -6,15 +18,11 @@ test.describe('Тесты страницы Home', () => {
     await page.goto('https://automationexercise.com/');
   });
   test('Проверка отображения элементов навигации в хедере', async ({ page }) => {
-    await expect(page.getByRole('link', { name: 'Website for automation practice' })).toBeVisible();
-    await expect(page.getByRole('link', { name: 'Home' })).toBeVisible();
-    await expect(page.getByRole('link', { name: 'Products' })).toBeVisible();
-    await expect(page.getByRole('link', { name: 'Cart' })).toBeVisible();
-    await expect(page.getByRole('link', { name: 'Signup / Login' })).toBeVisible();
-    await expect(page.getByRole('link', { name: 'Test Cases' }).first()).toBeVisible();
-    await expect(page.getByRole('link', { name: 'API Testing' })).toBeVisible();
-    await expect(page.getByRole('link', { name: 'Contact us' })).toBeVisible();
-    await expect(page.getByRole('link', { name: 'Video Tutorials' })).toBeVisible();
+    elements.forEach(({ locator }) => {
+      test.step('Проверка отоброжения лого Website for automation practice', async () => {
+        await expect(locator(page)).toBeVisible();
+      });
+    });
   });
 
   test('Проверка названий элементов навигации в хедере', async ({ page }) => {
