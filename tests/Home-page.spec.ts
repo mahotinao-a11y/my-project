@@ -1,28 +1,23 @@
 import { test, expect } from '@playwright/test';
+import { text } from 'node:stream/consumers';
 
-const elements = [
-  { locator: (page) => page.getByRole('link', { name: 'Website for automation practice' }) },
-  { locator: (page) => page.getByRole('link', { name: 'Home' }) },
-  { locator: (page) => page.getByRole('link', { name: 'Products' }) },
-  { locator: (page) => page.getByRole('link', { name: 'Cart' }) },
-  { locator: (page) => page.getByRole('link', { name: 'Signup / Login' }) },
-  { locator: (page) => page.getByRole('link', { name: 'Test Cases' }).first() },
-  { locator: (page) => page.getByRole('link', { name: 'API Testing' }) },
-  { locator: (page) => page.getByRole('link', { name: 'Contact us' }) },
-  { locator: (page) => page.getByRole('link', { name: 'Video Tutorials' }) },
-];
 //группировка тестов
-test.describe('Тесты страницы Home', () => {
+test.describe('Тесты Главной страницы', () => {
+  test.describe.configure({ timeout: 60000 });
   // запуск повторяющейся строчки кода для всех тестов в группе
   test.beforeEach(async ({ page }) => {
     await page.goto('https://automationexercise.com/');
   });
   test('Проверка отображения элементов навигации в хедере', async ({ page }) => {
-    elements.forEach(({ locator }) => {
-      test.step('Проверка отоброжения лого Website for automation practice', async () => {
-        await expect(locator(page)).toBeVisible();
-      });
-    });
+    await expect(page.getByRole('link', { name: 'Website for automation practice' })).toBeVisible();
+    await expect(page.getByRole('link', { name: 'Home' })).toBeVisible();
+    await expect(page.getByRole('link', { name: 'Products' })).toBeVisible();
+    await expect(page.getByRole('link', { name: 'Cart' })).toBeVisible();
+    await expect(page.getByRole('link', { name: 'Signup / Login' })).toBeVisible();
+    await expect(page.getByRole('link', { name: 'Test Cases' }).first()).toBeVisible();
+    await expect(page.getByRole('link', { name: 'API Testing' })).toBeVisible();
+    await expect(page.getByRole('link', { name: 'Contact us' })).toBeVisible();
+    await expect(page.getByRole('link', { name: 'Video Tutorials' })).toBeVisible();
   });
 
   test('Проверка названий элементов навигации в хедере', async ({ page }) => {
@@ -57,11 +52,11 @@ test.describe('Тесты страницы Home', () => {
   });
   test('Проверка наличия  разделов на главной странице ', async ({ page }) => {
     await expect(page.locator('div.brands-name')).toBeVisible();
-    console.log('✅ Блок брендов отображается');
+    console.log(' Блок брендов отображается');
     await expect(page.locator('div#accordian.panel-group.category-products')).toBeVisible();
-    console.log('✅ Блок категорий отображается');
+    console.log('Блок категорий отображается');
     await expect(page.locator('div.features_items')).toBeVisible();
-    console.log('✅ Блок будущих вещей отображается');
+    console.log('Блок будущих вещей отображается');
   });
   test('Проверка наличия подразделов в Category ', async ({ page }) => {
     await expect(page.locator('a[href="#Women"]')).toBeVisible();
@@ -118,7 +113,7 @@ test.describe('Тесты страницы Home', () => {
   });
   test('Проверка наличия в  Kids 2 разделов', async ({ page }) => {
     await page.locator('[href="#Kids"]').click();
-    await page.waitForTimeout(500);
+    await page.waitForTimeout(1000);
     const categories = page.locator('div#Kids.panel-collapse.in a');
     await expect(categories).toHaveCount(2);
     for (let i = 0; i < 2; i++) {
