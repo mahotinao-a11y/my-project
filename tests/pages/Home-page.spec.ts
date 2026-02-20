@@ -37,7 +37,7 @@ test.describe('Тесты Главной страницы', () => {
     );
   });
 
-  test('Проверка названий элемента заголовка', async ({ page }) => {
+  test('Проверка названий элемента заголовка статьи Automation', async ({ page }) => {
     await expect(
       page.getByRole('heading', { name: 'Full-Fledged practice website for Automation Engineers' }),
     ).toBeVisible();
@@ -50,7 +50,7 @@ test.describe('Тесты Главной страницы', () => {
     await page.locator('a.right.control-carousel.hidden-xs').click();
     await page.locator('a.left.control-carousel.hidden-xs').click();
   });
-  test('Проверка наличия  разделов на главной странице ', async ({ page }) => {
+  test('Проверка наличия  основных разделов на главной странице ', async ({ page }) => {
     await expect(page.locator('div.brands-name')).toBeVisible();
     console.log(' Блок брендов отображается');
     await expect(page.locator('div#accordian.panel-group.category-products')).toBeVisible();
@@ -66,13 +66,15 @@ test.describe('Тесты Главной страницы', () => {
     await expect(page.locator('a[href="#Kids"]')).toBeVisible();
     console.log('Дети');
   });
-  test('Проверка наличия + и их раскрытия в поразделе Categoty  < >', async ({ page }) => {
-    await expect(page.locator('.fa.fa-plus').first()).toBeVisible();
-    await expect(page.locator('.fa.fa-plus').nth(1)).toBeVisible();
-    await expect(page.locator('.fa.fa-plus').nth(2)).toBeVisible();
-    await page.locator('.fa.fa-plus').first().click();
-    await page.locator('.fa.fa-plus').nth(1).click();
-    await page.locator('.fa.fa-plus').nth(2).click();
+  test('Проверка наличия кнопок "+" и их раскрытия в поразделе Categoty  < >', async ({ page }) => {
+    const buttons = page.locator('.fa.fa-plus');
+    await expect(buttons).toHaveCount(3);
+    for (let i = 0; i < 3; i++) {
+      const btn = buttons.nth(i);
+      await expect(btn).toBeVisible();
+      await expect(btn).toBeEnabled();
+      await btn.click();
+    }
   });
 
   test('Проверка наличия в разделе Category 3 подразделов', async ({ page }) => {

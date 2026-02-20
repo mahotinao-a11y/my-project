@@ -1,0 +1,20 @@
+import { test, expect } from '@playwright/test';
+import { LoginPage } from './LoginPage';
+import { MyPage } from './MyPage';
+import { CartPage } from './CartPage';
+
+test('test', async ({ page }) => {
+  //Login
+  const login = new LoginPage(page);
+  await login.gotoLoginPage();
+  await login.login('mahotina.o@mail.ru', '123456');
+
+  //MyPage
+  const home = new MyPage(page);
+  await home.addProductToCart('Stylish Dress');
+  await home.gotoCart();
+
+  //Cart
+  const cart = new CartPage(page);
+  await cart.checkProductInCart('#product-4 > td.cart_description > h4 > a');
+});
