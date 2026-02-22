@@ -38,7 +38,7 @@ test('GET user account detail by email', async ({ request }) => {
   console.log(responseObject);
   if (response.status() === 200){ 
 console.log('true')};
-else {console.log ('false')};
+else {console.log (false)};
 });
 // придуманный тест
 test('GET branda H&M', async ({ request }) => {
@@ -51,7 +51,7 @@ test('POST To Search Product without search_product parameter', async ({ request
   expect(response.status()).toBe(200); 
   const Meassage = await response.text();
   console.log(Meassage);
-  expect(Meassage).toContain('Bad request, search_product parameter is missing in POST request.')
+  expect(Meassage).toContain('Bad request, search_product parameter is missing in POST request.')});
 
 
 
