@@ -38,7 +38,7 @@ test('GET user account detail by email', async ({ request }) => {
   console.log(responseObject);
   if (response.status() === 200){ 
 console.log('true')};
-else {console.log ('false')}
+else {console.log ('false')};
 });
 // придуманный тест
 test('GET branda H&M', async ({ request }) => {
