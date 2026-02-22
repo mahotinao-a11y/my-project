@@ -47,3 +47,4 @@ test('GET branda H&M', async ({ request }) => {
   console.log(responseObject);
 });
 
+
