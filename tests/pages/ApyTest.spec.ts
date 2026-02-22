@@ -46,5 +46,12 @@ test('GET branda H&M', async ({ request }) => {
   const responseObject = await response.json();
   console.log(responseObject);
 });
+test('POST To Search Product without search_product parameter', async ({ request }) => {
+  const response = await request.post('https://automationexercise.com/api/searchProduct');
+  expect(response.status()).toBe(200); 
+  const Meassage = await response.text();
+  console.log(Meassage);
+  expect(Meassage).toContain('Bad request, search_product parameter is missing in POST request.')
+
 
 
