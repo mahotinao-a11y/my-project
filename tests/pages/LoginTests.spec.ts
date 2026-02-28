@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
-import { LoginPage } from './LoginPage';
-import { MyPage } from './MyPage';
-import { CartPage } from './CartPage';
+import { LoginPage } from './LoginPage.ts';
+import { MyPage } from './MyPage.ts';
+import { CartPage } from './CartPage.ts';
 import { ApiProducts } from './ApiProducts';
 
 test('test', async ({ page }) => {

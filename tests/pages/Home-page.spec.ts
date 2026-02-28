@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { text } from 'node:stream/consumers';
+import { Layout } from './Layout.ts';
 
 //группировка тестов
 test.describe('Тесты Главной страницы', () => {
@@ -8,33 +8,9 @@ test.describe('Тесты Главной страницы', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('https://automationexercise.com/');
   });
-  test('Проверка отображения элементов навигации в хедере', async ({ page }) => {
-    await expect(page.getByRole('link', { name: 'Website for automation practice' })).toBeVisible();
-    await expect(page.getByRole('link', { name: 'Home' })).toBeVisible();
-    await expect(page.getByRole('link', { name: 'Products' })).toBeVisible();
-    await expect(page.getByRole('link', { name: 'Cart' })).toBeVisible();
-    await expect(page.getByRole('link', { name: 'Signup / Login' })).toBeVisible();
-    await expect(page.getByRole('link', { name: 'Test Cases' }).first()).toBeVisible();
-    await expect(page.getByRole('link', { name: 'API Testing' })).toBeVisible();
-    await expect(page.getByRole('link', { name: 'Contact us' })).toBeVisible();
-    await expect(page.getByRole('link', { name: 'Video Tutorials' })).toBeVisible();
-  });
-
-  test('Проверка названий элементов навигации в хедере', async ({ page }) => {
-    await expect(page.getByRole('link', { name: 'Home' })).toContainText('Home');
-    await expect(page.getByRole('link', { name: 'Products' })).toContainText('Products');
-    await expect(page.getByRole('link', { name: 'Cart' })).toContainText('Cart');
-    await expect(page.getByRole('link', { name: 'Signup / Login' })).toContainText(
-      'Signup / Login',
-    );
-    await expect(page.getByRole('link', { name: 'Test Cases' }).first()).toContainText(
-      'Test Cases',
-    );
-    await expect(page.getByRole('link', { name: 'API Testing' })).toContainText('API Testing');
-    await expect(page.getByRole('link', { name: 'Contact us' })).toContainText('Contact us');
-    await expect(page.getByRole('link', { name: 'Video Tutorials' })).toContainText(
-      'Video Tutorials',
-    );
+  test('Проверка навигационного меню', async ({ page }) => {
+    const layout = new Layout(page);
+    await layout.navigationMenu();
   });
 
   test('Проверка названий элемента заголовка статьи Automation', async ({ page }) => {
