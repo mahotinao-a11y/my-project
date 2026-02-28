@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { Layout } from './Layout.ts';
+import { Layout } from './Layout';
 
 //группировка тестов
 test.describe('Тесты Главной страницы', () => {

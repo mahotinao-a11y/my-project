@@ -1,5 +1,6 @@
 import { test, expect } from '@playwright/test';
 import { LoginPage } from './LoginPage.ts';
+import users from './users.json';
 import { MyPage } from './MyPage.ts';
 import { CartPage } from './CartPage.ts';
 import { ApiProducts } from './ApiProducts';
@@ -8,7 +9,7 @@ test('test', async ({ page }) => {
   //Login
   const login = new LoginPage(page);
   await login.gotoLoginPage();
-  await login.login('mahotina.o@mail.ru', '123456');
+  await login.login(users.validUser.email, users.validUser.password);
 
   //MyPage
   const home = new MyPage(page);
