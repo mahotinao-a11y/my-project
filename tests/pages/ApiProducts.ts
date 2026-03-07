@@ -1,7 +1,7 @@
 export class ApiProducts {
   constructor(request) {
     this.request = request;
-    this.baseURL = 'https://automationexercise.com/api/productsList';
+    this.baseURL = 'https://automationexercise.com/api';
   }
 
   async getAllProducts() {

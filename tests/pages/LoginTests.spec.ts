@@ -24,6 +24,6 @@ test('API test - ApiProducts', async ({ request }) => {
   const apiProducts = new ApiProducts(request);
   const response = await apiProducts.getAllProducts();
   console.log('Products count:', response.products.length);
-  expect(response).toBe(200);
+  expect(response.status).toBe(200);
   expect(response.responseCode).toBe(200);
 });
