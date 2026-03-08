@@ -19,6 +19,7 @@ test('Post To All Products', async ({ request }) => {
   expect(responseObject.responseCode).toBe(405);
   const Meassage = await response.text();
   expect(Meassage).toContain('This request method is not supported.');
+  console.log(responseObject);
 });
 
 test('Get All Brands List', async ({ request }) => {

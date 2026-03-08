@@ -20,10 +20,17 @@ test('test', async ({ page }) => {
   const cart = new CartPage(page);
   await cart.checkProductInCart('#product-4 > td.cart_description > h4 > a');
 });
-test('API test - ApiProducts', async ({ request }) => {
+test('API test -Get ApiProducts', async ({ request }) => {
   const apiProducts = new ApiProducts(request);
   const response = await apiProducts.getAllProducts();
   console.log('Products count:', response.products.length);
   expect(response.status).toBe(200);
   expect(response.responseCode).toBe(200);
+});
+
+test('API test - POST ApiProducts', async ({ request }) => {
+  const ApiProducts = new ApiProducts(request);
+  const response = await ApiProducts.postAllProducts();
+  expect(responseObject.responseCode).toBe(405);
+  expect(Meassage).toContain('This request method is not supported.');
 });

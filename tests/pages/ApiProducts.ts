@@ -15,4 +15,12 @@ export class ApiProducts {
       products: responseObject.products,
     };
   }
+  async postAllProducts() {
+    const response = await request.post(`${BASE_URL}/productsList`);
+    const responseObject = await response.json();
+    return {
+      responseCode: responseObject.responseCode,
+      message: responseObject.massage,
+    };
+  }
 }
