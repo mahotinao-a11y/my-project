@@ -16,7 +16,7 @@ export class ApiProducts {
     };
   }
   async postAllProducts() {
-    const response = await request.post(`${BASE_URL}/productsList`);
+    const response = await this.request.post(`${this.baseURL}/productsList`);
     const responseObject = await response.json();
     return {
       responseCode: responseObject.responseCode,

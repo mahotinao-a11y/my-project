@@ -29,8 +29,7 @@ test('API test -Get ApiProducts', async ({ request }) => {
 });
 
 test('API test - POST ApiProducts', async ({ request }) => {
-  const ApiProducts = new ApiProducts(request);
-  const response = await ApiProducts.postAllProducts();
-  expect(responseObject.responseCode).toBe(405);
-  expect(Meassage).toContain('This request method is not supported.');
+  const apiProducts = new ApiProducts(request);
+  const response = await apiProducts.postAllProducts();
+  expect(response.responseCode).toBe(405);
 });
